@@ -1,40 +1,33 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"io/ioutil"
-	"os"
 )
 
-func ReadFile(path string) (string, error) {
+type Shape interface {
+	Area() float64
+}
 
-	fileInfo, err := os.Stat(path)
-	if os.IsNotExist(err) {
-		return "", errors.New("file does not exist")
-	}
+type Circle struct {
+	Radius float64
+}
 
-	if err != nil {
-		return "", err
-	}
+type Rectangle struct {
+	Width  float64
+	Height float64
+}
 
-	if fileInfo.Size() > 1*1024*1024 {
-		return "", errors.New("file is too large")
-	}
+func (r Rectangle) Area() float64 {
+	return r.Width * r.Height
+}
 
-	content, err := ioutil.ReadFile(path)
-	if err != nil {
-		return "", err
-	}
-	return string(content), err
+func (c Circle) Area() float64 {
+	return 3.14 * c.Radius * c.Radius
 }
 
 func main() {
-
-	content, err := ReadFile("test.txt")
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println(content)
-	}
+	circle := Circle{Radius: 5.0}
+	rectangle := Rectangle{Width: 4, Height: 6}
+	fmt.Println(circle.Area())    // 78.5398...
+	fmt.Println(rectangle.Area()) // 24
 }
