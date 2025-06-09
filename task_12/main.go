@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	NUM := 100
+	NUM := 101
 	wg := &sync.WaitGroup{}
 
 	ch := make(chan int)
@@ -16,7 +16,7 @@ func main() {
 	go func() {
 		defer wg.Done()
 		for i := range NUM {
-			time.Sleep(5 * time.Second) // Simulate some work
+			time.Sleep(5 * time.Microsecond) // Simulate some work
 			ch <- i
 
 		}
