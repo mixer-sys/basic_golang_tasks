@@ -51,5 +51,14 @@ func main() {
 
 	for res := range ch {
 		fmt.Println(res)
+		for {
+			select {
+			case res, ok := <-ch:
+				if !ok {
+					return
+				}
+				fmt.Println(res)
+			}
+		}
 	}
 }
