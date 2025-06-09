@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	NUM := 101
+	NUM := 100
 	wg := &sync.WaitGroup{}
 
 	ch := make(chan int)
