@@ -37,7 +37,9 @@ func main() {
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, syscall.SIGINT, syscall.SIGTERM)
 
+	wg.Add(1)
 	go func() {
+		defer wg.Done()
 		for num := range ch {
 			fmt.Println("Num:", num)
 
