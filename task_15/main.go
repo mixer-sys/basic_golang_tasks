@@ -18,7 +18,7 @@ func main() {
 	}
 
 	ch := make(chan string)
-	wg := sync.WaitGroup{}
+	wg := &sync.WaitGroup{}
 
 	for _, url := range URLS {
 		wg.Add(1)

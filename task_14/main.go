@@ -13,7 +13,7 @@ import (
 func main() {
 
 	ctx, cancel := context.WithCancel(context.Background())
-	wg := sync.WaitGroup{}
+	wg := &sync.WaitGroup{}
 
 	ch := make(chan int)
 
